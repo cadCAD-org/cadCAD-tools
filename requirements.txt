@@ -1,2 +1,5 @@
 pandas
 cadCAD
+tqdm
+numpy
+plotly
