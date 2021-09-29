@@ -12,5 +12,5 @@ setup(name='cadCAD_tools',
       author='Danilo Lessa Bernardineli',
       author_email='danilo@block.science, danilo.lessa@gmail.com',
       packages=find_packages(),
-      install_requires=['cadCAD']
+      install_requires=['cadCAD', 'pandas', 'tqdm', 'numpy', 'plotly']
 )
