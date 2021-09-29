@@ -1,2 +1,2 @@
 pandas
-cadCAD
+cadCAD>=0.4.18
