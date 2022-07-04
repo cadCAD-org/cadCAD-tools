@@ -1,5 +1,5 @@
 pandas
-cadCAD
+cadCAD==0.4.23
 tqdm
 numpy
 plotly
