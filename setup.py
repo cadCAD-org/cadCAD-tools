@@ -5,12 +5,12 @@ cadCAD tools
 """
 
 setup(name='cadCAD_tools',
-      version='0.0.1.3',
+      version='0.0.1.5',
       description="tools",
       long_description=long_description,
       url='https://github.com/cadCAD-org/cadCAD-tools',
       author='Danilo Lessa Bernardineli',
       author_email='danilo@block.science, danilo.lessa@gmail.com',
       packages=find_packages(),
-      install_requires=['cadCAD', 'pandas', 'tqdm', 'numpy', 'plotly']
+      install_requires=['pandas', 'tqdm', 'numpy', 'plotly']
 )

@@ -1,5 +1,4 @@
 pandas
-cadCAD>=0.4.18
 tqdm
 numpy
 plotly
