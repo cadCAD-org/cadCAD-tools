@@ -5,7 +5,7 @@ cadCAD tools
 """
 
 setup(name='cadCAD_tools',
-      version='0.0.1.5',
+      version='0.0.1.6',
       description="tools",
       long_description=long_description,
       url='https://github.com/cadCAD-org/cadCAD-tools',
