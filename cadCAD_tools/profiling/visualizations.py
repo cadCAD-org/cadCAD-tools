@@ -1,10 +1,10 @@
-from tqdm.auto import tqdm
-import pandas as pd
-import plotly.express as px
+from tqdm.auto import tqdm # type: ignore
+import pandas as pd # type: ignore
+import plotly.express as px # type: ignore
 import numpy as np
 
 
-def visualize_elapsed_time_per_ts(df: pd.DataFrame, relative=False) -> None:
+def visualize_elapsed_time_per_ts(df: pd.DataFrame, relative=False):
     indexes = ['simulation', 'run', 'timestep', 'substep']
 
     z_df = df.set_index(indexes)
@@ -33,8 +33,8 @@ def visualize_elapsed_time_per_ts(df: pd.DataFrame, relative=False) -> None:
     return fig
 
 
-def visualize_substep_impact(df: pd.DataFrame, relative=True, **kwargs) -> None:
-    indexes = ['simulation', 'run', 'timestep', 'substep']
+def visualize_substep_impact(df: pd.DataFrame, relative=True, **kwargs):
+    indexes = ['simulation', 'subset', 'run', 'timestep', 'substep']
 
     new_df = df.copy()
     new_df = new_df.assign(psub_time=np.nan).set_index(indexes)
@@ -63,7 +63,8 @@ def visualize_substep_impact(df: pd.DataFrame, relative=True, **kwargs) -> None:
         fig_df[x_col] = fig_df[x_col] / 2
 
     if relative is True:
-        fig_df = fig_df.assign(relative_psub_time=fig_df.groupby(indexes[:-1]).psub_time.apply(lambda x: x / x.sum()))
+        time_per_psub = fig_df.groupby(indexes[:-1]).psub_time.apply(lambda x: x / x.sum())
+        fig_df = fig_df.set_index(indexes).assign(relative_psub_time=time_per_psub.values).reset_index()
         y_col = 'relative_psub_time'
     else:
         y_col = 'psub_time'
@@ -75,5 +76,8 @@ def visualize_substep_impact(df: pd.DataFrame, relative=True, **kwargs) -> None:
                  x=x_col,
                  y=y_col,
                  **kwargs)
+    
+    if relative is True:
+        fig.update_yaxes(tickformat=".1%")
 
     return fig
